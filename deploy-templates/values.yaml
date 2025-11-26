@@ -32,7 +32,12 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
+# securityContext: {}
+
+securityContext:
+  runAsUser: 0      # Run the container as the root user (UID 0)
+  runAsGroup: 0     # GID 0 also corresponds to the root group for complete file access
+  
   # capabilities:
   #   drop:
   #   - ALL
@@ -90,26 +95,28 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-# volumes: []
+volumes: []
+
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-# volumeMounts: []
+volumeMounts: []
+
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
-volumeMounts:
-    - mountPath: /tmp/logs
-      name: logs
+# volumeMounts:
+#    - mountPath: /tmp/logs
+#      name: logs
       
-volumes:
-  - name: logs
-    persistentVolumeClaim:
-      claimName: data-logs
+# volumes:
+#  - name: logs
+#    persistentVolumeClaim:
+#      claimName: data-logs
 
 # -- https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
 nodeSelector: {}
