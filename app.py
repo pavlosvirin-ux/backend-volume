@@ -1,7 +1,8 @@
 """Example of flask main file."""
-from flask import Flask
 import logging
 from logging.handlers import RotatingFileHandler
+from flask import Flask
+
 
 app = Flask(__name__)
 # Configure log level
