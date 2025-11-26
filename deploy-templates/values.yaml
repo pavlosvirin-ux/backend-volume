@@ -45,7 +45,7 @@ service:
   port: 8080
 
 ingress:
-  enabled: false
+  enabled: true
   dnsWildcard: development.krci-dev.cloudmentor.academy
   className: ""
   annotations: {}
@@ -90,17 +90,26 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
+# volumes: []
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
+# volumeMounts: []
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
+
+volumeMounts:
+    - mountPath: /tmp/logs
+      name: logs
+      
+volumes:
+  - name: logs
+    persistentVolumeClaim:
+      claimName: data-logs
 
 # -- https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
 nodeSelector: {}
