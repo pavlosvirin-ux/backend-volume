@@ -111,7 +111,7 @@ volumeMounts: []
 
 # volumeMounts:
 #    - mountPath: /tmp/logs
-#      name: logs      
+#      name: logs
 # volumes:
 #  - name: logs
 #    persistentVolumeClaim:
